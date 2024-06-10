@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SwiftConnect - User Consent Form</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    textarea[readonly] {
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="mb-4">SwiftConnect - User Consent Form</h2>
+    <form id="agreementForm">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="firstName" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required>
+        </div>
+        <div class="col-md-6">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+      </div>
+      <div class="mb-3">
+        <label for="contactNumber" class="form-label">Contact Number</label>
+        <input type="tel" class="form-control" id="contactNumber" placeholder="Enter your contact number" required>
+      </div>
+      <div class="mb-3">
+        <label for="jobTitle" class="form-label">Job Title</label>
+        <input type="text" class="form-control" id="jobTitle" placeholder="Enter your job title" required>
+      </div>
+      <div class="mb-3">
+        <label for="tenantName" class="form-label">Tenant Name</label>
+        <input type="text" class="form-control" id="tenantName" placeholder="Enter tenant name" required>
+      </div>
+      <div class="mb-3">
+        <label for="agreementText" class="form-label">Agreement Text</label>
+        <textarea class="form-control" id="agreementText" rows="10" readonly>
+Agreement Text
+
+This Agreement ("Agreement") is made and entered into as of this [Date] by and between [Your Company Name], a corporation organized and existing under the laws of [State], with its principal place of business located at [Company Address] (hereinafter referred to as "Company"), and [Client Name], residing at [Client Address] (hereinafter referred to as "Client").
+
+WHEREAS, the Company is in the business of [Description of Services/Products]; and
+
+WHEREAS, the Client desires to engage the Company to provide certain services/products under the terms and conditions set forth herein;
+
+NOW, THEREFORE, in consideration of the mutual covenants and promises herein contained, the parties hereto agree as follows:
+
+1. Services. The Company agrees to provide the Client with the following services/products: [Description of Services/Products].
+
+2. Term. This Agreement shall commence on [Start Date] and shall continue in full force and effect until [End Date], unless terminated earlier in accordance with the provisions of this Agreement.
+
+3. Payment. The Client agrees to pay the Company the sum of [Amount] for the services/products provided under this Agreement. Payment shall be made in accordance with the following schedule: [Payment Schedule].
+
+4. Confidentiality. Both parties agree to maintain the confidentiality of all information that is exchanged in the course of the performance of this Agreement.
+
+5. Termination. This Agreement may be terminated by either party upon [Number] days written notice to the other party.
+
+6. Governing Law. This Agreement shall be governed by and construed in accordance with the laws of the State of [State].
+
+IN WITNESS WHEREOF, the parties hereto have executed this Agreement as of the day and year first above written.
+
+[Company Representative Name]
+[Company Representative Title]
+[Company Name]
+
+[Client Name]
+        </textarea>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="agreeCheck" required>
+        <label class="form-check-label" for="agreeCheck">I agree to the terms and conditions</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Sign Agreement</button>
+    </form>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+  <script>
+    document.getElementById('firstName').addEventListener('input', updateAgreementText);
+    document.getElementById('lastName').addEventListener('input', updateAgreementText);
+
+    function updateAgreementText() {
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const agreementText = document.getElementById('agreementText');
+
+      agreementText.value = `
+Agreement Text
+
+This Agreement ("Agreement") is made and entered into as of this [Date] by and between [Your Company Name], a corporation organized and existing under the laws of [State], with its principal place of business located at [Company Address] (hereinafter referred to as "Company"), and [Client Name], residing at [Client Address] (hereinafter referred to as "Client").
+
+WHEREAS, the Company is in the business of [Description of Services/Products]; and
+
+WHEREAS, the Client desires to engage the Company to provide certain services/products under the terms and conditions set forth herein;
+
+NOW, THEREFORE, in consideration of the mutual covenants and promises herein contained, the parties hereto agree as follows:
+
+1. Services. The Company agrees to provide the Client with the following services/products: [Description of Services/Products].
+
+2. Term. This Agreement shall commence on [Start Date] and shall continue in full force and effect until [End Date], unless terminated earlier in accordance with the provisions of this Agreement.
+
+3. Payment. The Client agrees to pay the Company the sum of [Amount] for the services/products provided under this Agreement. Payment shall be made in accordance with the following schedule: [Payment Schedule].
+
+4. Confidentiality. Both parties agree to maintain the confidentiality of all information that is exchanged in the course of the performance of this Agreement.
+
+5. Termination. This Agreement may be terminated by either party upon [Number] days written notice to the other party.
+
+6. Governing Law. This Agreement shall be governed by and construed in accordance with the laws of the State of [State].
+
+IN WITNESS WHEREOF, the parties hereto have executed this Agreement as of the day and year first above written.
+
+${firstName} ${lastName}
+[Company Representative Title]
+[Company Name]
+
+[Client Name]
+      `;
+    }
+  </script>
+</body>
+</html>

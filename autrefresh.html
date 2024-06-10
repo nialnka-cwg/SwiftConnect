@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+<style>
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 300px;
+        text-align: center;
+    }
+
+    .modal-content button {
+        margin: 10px;
+    }
+</style>
+</head>
+<body>
+    <h2 class="mb-4">Swift Connect - Agreement Signing Form</h2>    
+<script>
+
+// define auto refreh mode
+var disableAutoRefresh = true;
+let autoRefreshInterval;
+
+// It is preferred to use a self-executing function around your script if
+// code should run on each page load
+// See https://developer.mozilla.org/en-US/docs/Glossary/IIFE
+function autoRefresh() {
+    //window.location = window.location.href;
+    showConfirmation();
+}
+autoRefreshInterval = setInterval('autoRefresh()', 10000);
+</script>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <p>This page will refresh automatically in <span id="countdown">20</span> seconds to bring you the most updated content.</p>
+        <button onclick="confirmRefresh()">Yes</button>
+        <button onclick="closeModal()">No</button>
+    </div>
+</div>
+
+<script>
+    let countdownInterval;
+
+    // Function to show the modal and start the countdown
+    function showConfirmation() {
+        document.getElementById('myModal').style.display = 'block';
+        startCountdown();
+    }
+
+    // Function to hide the modal and clear the countdown
+    function closeModal() {
+        document.getElementById('myModal').style.display = 'none';
+        clearInterval(countdownInterval);
+        clearInterval(autoRefreshInterval);
+        console.log(autoRefreshInterval);
+        console.log("Reseting auto refresh...");
+        autoRefreshInterval = setInterval('autoRefresh()', 1000000);
+        console.log(autoRefreshInterval);
+    }
+
+    // Function to refresh the page
+    function confirmRefresh() {
+        closeModal();
+        location.reload();
+    }
+
+    // Function to start the countdown
+    function startCountdown() {
+        let countdownElement = document.getElementById('countdown');
+        let countdownTime = 20;
+        countdownElement.textContent = countdownTime;
+
+        countdownInterval = setInterval(function() {
+            countdownTime--;
+            countdownElement.textContent = countdownTime;
+
+            if (countdownTime <= 0) {
+                clearInterval(countdownInterval);
+                confirmRefresh();
+            }
+        }, 1000);
+    }
+
+    // Optional: Close the modal if the user clicks outside of it
+    window.onclick = function(event) {
+        var modal = document.getElementById('myModal');
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+</script>
+</body>
+</html>
